@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function Signup() {
@@ -9,6 +10,7 @@ function Signup() {
   const [profilePicture, setProfilePicture] = useState(null);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     setProfilePicture(e.target.files[0]);
@@ -34,6 +36,7 @@ function Signup() {
       if (response.status === 201) {
         setSuccess('Signup successful');
         setError('');
+        navigate('/login');
       }
     } catch (err) {
       setError('Signup failed: ' + err.response.data.message);
