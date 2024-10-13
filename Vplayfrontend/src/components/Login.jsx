@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import './login.css'; // Import the CSS file
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -29,33 +30,43 @@ function Login() {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
+    <div className="mainContainer">
+      <div className="titleContainer">
+        <div>Login</div>
+      </div>
+      <br />
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
+        <div className="inputContainer">
           <input
             type="email"
             value={email}
+            placeholder="Enter your email here"
             onChange={(e) => setEmail(e.target.value)}
+            className="inputBox"
             required
           />
+          <label className="errorLabel">{error}</label>
         </div>
-        <div>
-          <label>Password:</label>
+        <br />
+        <div className="inputContainer">
           <input
             type="password"
             value={password}
+            placeholder="Enter your password here"
             onChange={(e) => setPassword(e.target.value)}
+            className="inputBox"
             required
           />
+          <label className="errorLabel">{error}</label>
         </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        {success && <p style={{ color: 'green' }}>{success}</p>}
-        <button type="submit">Login</button>
+        <br />
+        <div className="inputContainer">
+          <input className="inputButton" type="submit" value="Log in" />
+        </div>
       </form>
+      {success && <p style={{ color: 'green' }}>{success}</p>}
       {profilePicture && (
-        <div>
+        <div className="profileContainer">
           <h3>Profile Picture:</h3>
           <img src={`data:image/jpeg;base64,${profilePicture}`} alt="Profile" />
         </div>
