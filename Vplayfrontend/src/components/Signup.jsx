@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import './Signup.css';  // Importing the CSS file for styling
 
 function Signup() {
   const [userId, setUserId] = useState('');
@@ -46,8 +47,9 @@ function Signup() {
 
   return (
     <div className="signup-container">
-      <h2>Signup</h2>
       <form onSubmit={handleSubmit}>
+        <h2>Signup</h2>
+        
         <div>
           <label>User ID:</label>
           <input
@@ -57,6 +59,7 @@ function Signup() {
             required
           />
         </div>
+        
         <div>
           <label>Name:</label>
           <input
@@ -66,6 +69,7 @@ function Signup() {
             required
           />
         </div>
+        
         <div>
           <label>Email:</label>
           <input
@@ -75,6 +79,7 @@ function Signup() {
             required
           />
         </div>
+        
         <div>
           <label>Password:</label>
           <input
@@ -84,6 +89,7 @@ function Signup() {
             required
           />
         </div>
+        
         <div>
           <label>Profile Picture:</label>
           <input
@@ -92,8 +98,10 @@ function Signup() {
             required
           />
         </div>
+        
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {success && <p style={{ color: 'green' }}>{success}</p>}
+        
         <button type="submit">Signup</button>
       </form>
     </div>
