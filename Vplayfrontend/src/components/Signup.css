@@ -78,5 +78,9 @@
   .signup-container form input[type="file"] {
     padding: 3px;
   }
+
+  .no-scroll {
+    overflow: hidden;
+  }
   
   

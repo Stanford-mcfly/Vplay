@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, send_file
+from flask import Blueprint, request, jsonify, send_file
 from gridfs import GridFS
 from pymongo import MongoClient
 
@@ -8,6 +8,14 @@ db = client['mydb']
 fs = GridFS(db)
 
 video_bp = Blueprint('video_bp', __name__)
+
+@video_bp.route('/upload', methods=['POST'])
+def upload_video():
+    if 'video' not in request.files:
+        return 'No video part', 400
+    file = request.files['video']
+    file_id = fs.put(file, filename=file.filename, contentType='video/mp4')
+    return jsonify({'file_id': str(file_id), 'filename': file.filename})
 
 @video_bp.route('/videos', methods=['GET'])
 def get_videos():

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState  , useEffect } from 'react';
 import axios from 'axios';
 import './login.css'; // Import the CSS file
 
@@ -8,6 +8,17 @@ function Login() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
+
+  
+  useEffect(() => {
+    // Add class to body to prevent scrolling
+    document.body.classList.add('no-scroll');
+
+    // Cleanup function to remove the class when the component is unmounted
+    return () => {
+      document.body.classList.remove('no-scroll');
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

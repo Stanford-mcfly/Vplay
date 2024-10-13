@@ -18,10 +18,10 @@
     text-align: center;
   }
 
-  body, html {
-    overflow: hidden; /* Hide overflow to remove scrollbar */
-}
-  
+  .no-scroll {
+    overflow: hidden;
+  }
+
   /* Title styling */
   .titleContainer {
     font-size: 24px;
