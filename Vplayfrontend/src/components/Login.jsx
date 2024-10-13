@@ -31,46 +31,43 @@ function Login() {
 
   return (
     <div className="mainContainer">
-      <div className="titleContainer">
-        <div>Login</div>
+      <div className="formContainer">
+        <div className="titleContainer">Login</div>
+        <form onSubmit={handleSubmit}>
+          <div className="inputContainer">
+            <input
+              type="email"
+              value={email}
+              placeholder="Enter your email here"
+              onChange={(e) => setEmail(e.target.value)}
+              className="inputBox"
+              required
+            />
+            <label className="errorLabel">{error}</label>
+          </div>
+          <div className="inputContainer">
+            <input
+              type="password"
+              value={password}
+              placeholder="Enter your password here"
+              onChange={(e) => setPassword(e.target.value)}
+              className="inputBox"
+              required
+            />
+            <label className="errorLabel">{error}</label>
+          </div>
+          <div className="inputContainer">
+            <input className="inputButton" type="submit" value="Log in" />
+          </div>
+        </form>
+        {success && <p style={{ color: 'green' }}>{success}</p>}
+        {profilePicture && (
+          <div className="profileContainer">
+            <h3>Profile Picture:</h3>
+            <img src={`data:image/jpeg;base64,${profilePicture}`} alt="Profile" />
+          </div>
+        )}
       </div>
-      <br />
-      <form onSubmit={handleSubmit}>
-        <div className="inputContainer">
-          <input
-            type="email"
-            value={email}
-            placeholder="Enter your email here"
-            onChange={(e) => setEmail(e.target.value)}
-            className="inputBox"
-            required
-          />
-          <label className="errorLabel">{error}</label>
-        </div>
-        <br />
-        <div className="inputContainer">
-          <input
-            type="password"
-            value={password}
-            placeholder="Enter your password here"
-            onChange={(e) => setPassword(e.target.value)}
-            className="inputBox"
-            required
-          />
-          <label className="errorLabel">{error}</label>
-        </div>
-        <br />
-        <div className="inputContainer">
-          <input className="inputButton" type="submit" value="Log in" />
-        </div>
-      </form>
-      {success && <p style={{ color: 'green' }}>{success}</p>}
-      {profilePicture && (
-        <div className="profileContainer">
-          <h3>Profile Picture:</h3>
-          <img src={`data:image/jpeg;base64,${profilePicture}`} alt="Profile" />
-        </div>
-      )}
     </div>
   );
 }
