@@ -1,0 +1,107 @@
+from flask import Blueprint, request, jsonify, send_file, session
+from gridfs import GridFS
+from pymongo import MongoClient
+import base64
+
+client = MongoClient('mongodb://localhost:27017/')
+db = client['mydb']
+fs = GridFS(db)
+videos_collection = db['videos']
+users_collection = db['users']
+
+video_bp = Blueprint('video_bp', __name__)
+
+@video_bp.route('/upload', methods=['POST'])
+def upload_video():
+    if 'video' not in request.files or 'thumbnail' not in request.files:
+        return 'Video and thumbnail are required', 400
+
+    title = request.form.get('title')
+    description = request.form.get('description')
+    owner_id = session.get('user_id')
+    print(f"Current user ID from session: {owner_id}")
+
+    video_file = request.files['video']
+    thumbnail_file = request.files['thumbnail']
+
+    # Store thumbnail as base64
+    thumbnail_base64 = base64.b64encode(thumbnail_file.read()).decode('utf-8')
+
+    # Retrieve user's email from the users collection
+    user = users_collection.find_one({'userId': owner_id})
+    if not user:
+        return 'User not found', 404
+
+    email = user['email']  # Assuming the users collection has an 'email' field
+
+    # Create a new filename with email and original filename
+    new_filename = f"{email}_{video_file.filename}"
+
+    # Store video in GridFS
+    file_id = fs.put(video_file, filename=new_filename, contentType='video/mp4')
+
+    video = {
+        'ownerId': owner_id,
+        'title': title,
+        'description': description,
+        'filename': new_filename,  # Store the new filename
+        'thumbnail': thumbnail_base64,
+        'file_id': file_id,
+        'likes': [],
+        'comments': []
+    }
+    
+    videos_collection.insert_one(video)
+    return jsonify({'message': 'Video uploaded successfully'}), 201
+@video_bp.route('/videos', methods=['GET'])
+def get_videos():
+    videos = videos_collection.find()
+    video_list = []
+    for video in videos:
+        owner = users_collection.find_one({'userId': video['ownerId']})
+        video_list.append({
+            'ownerId':video['ownerId'],
+            'title': video['title'],
+            'thumbnail': video['thumbnail'],
+            'filename': video['filename'],
+            'ownerName': owner['name'],
+            'ownerProfilePicture': owner['profilePicture']
+        })
+    return jsonify(video_list)
+
+@video_bp.route('/video/<filename>', methods=['GET'])
+def get_video(filename):
+    file = fs.find_one({'filename': filename})
+    if not file:
+        return 'File not found', 404
+    return send_file(file, mimetype='video/mp4')
+@video_bp.route('/subscribed_videos', methods=['GET'])
+def get_subscribed_videos():
+    current_user_id = session.get('user_id')
+    if not current_user_id:
+        return 'User not logged in', 403
+
+    # Get the current user and their subscriptions
+    current_user = users_collection.find_one({'userId': current_user_id})
+    if not current_user or 'subscribedUsers' not in current_user:
+        return jsonify([])  # Return an empty list if no subscriptions
+
+    subscribed_users = current_user['subscribedUsers']  # This should be an array of user IDs
+
+    # Fetch videos from subscribed users
+    videos = videos_collection.find({'ownerId': {'$in': subscribed_users}})
+    video_list = []
+    
+    for video in videos:
+        owner = users_collection.find_one({'userId': video['ownerId']})
+        video_list.append({
+            'ownerId': video['ownerId'],
+            'title': video['title'],
+            'thumbnail': video['thumbnail'],
+            'filename': video['filename'],
+            'ownerName': owner['name'],
+            'ownerProfilePicture': owner['profilePicture'],
+            'file_id': str(video['_id']),    # Include file_id for the VideoCard
+        })
+
+    return jsonify(video_list)

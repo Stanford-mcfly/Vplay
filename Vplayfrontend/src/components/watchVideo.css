@@ -1,0 +1,132 @@
+.watchContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9; /* Light background for contrast */
+  border-radius: 10px; /* Rounded corners for container */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  text-align: left; /* Align text to the left */
+}
+
+video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px; /* Rounded corners for the video */
+  margin-bottom: 20px; /* Space between video and content */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow around the video */
+}
+
+h1 {
+  font-size: 2.2rem; /* Larger font size for the title */
+  margin: 15px 0; /* More space around the title */
+  color: #333; /* Darker color for title */
+}
+
+p {
+  font-size: 1.1rem; /* Slightly larger font size for description */
+  color: #666; /* Softer color for description */
+  margin-bottom: 15px; /* Space between description and next element */
+  line-height: 1.6; /* Improved readability */
+}
+
+button {
+  padding: 12px 18px; /* More padding for a larger button */
+  background-color: #28a745; /* Green background for action buttons */
+  color: white; /* White text for contrast */
+  border: none; /* No border */
+  border-radius: 6px; /* Slightly larger rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin: 10px 10px 10px 0; /* Space between buttons */
+  font-size: 1rem; /* Consistent font size */
+  transition: background-color 0.3s ease-in-out; /* Smooth hover transition */
+}
+
+button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.commentsSection {
+  margin-top: 30px; /* Space above the comments section */
+  background-color: #fff; /* White background for comments */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow around comments */
+}
+
+.comment {
+  display: flex; /* Align profile picture and text side by side */
+  align-items: center; /* Vertically align items */
+  margin-bottom: 15px; /* Space between comments */
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee; /* Light border between comments */
+}
+
+.commentProfilePicture {
+  width: 40px; /* Size for profile pictures */
+  height: 40px;
+  border-radius: 50%; /* Circular profile picture */
+  margin-right: 15px; /* Space between profile picture and text */
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  resize: vertical; /* Allow vertical resizing */
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+textarea:focus {
+  outline: none; /* Remove default outline */
+  border-color: #80bdff; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(128, 189, 255, 0.5); /* Slight glow effect */
+}
+
+@media (max-width: 768px) {
+  .watchContainer {
+    padding: 15px; /* Reduce padding for medium screens */
+  }
+
+  h1 {
+    font-size: 1.8rem; /* Adjust title size for medium screens */
+  }
+
+  p {
+    font-size: 1rem; /* Adjust description size for medium screens */
+  }
+
+  button {
+    padding: 10px 15px; /* Adjust button size for medium screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .watchContainer {
+    padding: 10px; /* Less padding for smaller screens */
+  }
+
+  h1 {
+    font-size: 1.6rem; /* Smaller title on mobile */
+  }
+
+  p {
+    font-size: 0.95rem; /* Smaller description on mobile */
+  }
+
+  button {
+    padding: 8px 12px; /* Smaller buttons on mobile */
+    font-size: 0.9rem; /* Smaller button text */
+  }
+
+  .commentProfilePicture {
+    width: 30px; /* Smaller profile picture */
+    height: 30px;
+  }
+
+  textarea {
+    font-size: 0.9rem; /* Smaller text in textarea */
+  }
+}
