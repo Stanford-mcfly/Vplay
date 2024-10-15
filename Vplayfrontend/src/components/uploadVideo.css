@@ -1,25 +1,94 @@
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #191716;
+  color: #191716;
+}
+
 .uploadContainer {
-    max-width: 600px;
-    margin: 0 auto;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #191716;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  color: #e0e2db;
+  text-align: center;
+}
+
+.uploadContainer h1 {
+  color: #e6af2e;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+/* Form Styles */
+.uploadContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.uploadContainer input[type="text"],
+.uploadContainer textarea,
+.uploadContainer input[type="file"] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #e0e2db;
+  color: #191716;
+  border: 1px solid #e6af2e;
+  border-radius: 4px;
+}
+
+.uploadContainer textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.uploadContainer input:focus,
+.uploadContainer textarea:focus {
+  outline: none;
+  border-color: #e6af2e;
+}
+
+/* Button Styles */
+.uploadContainer button {
+  padding: 12px 20px;
+  background-color: #e6af2e;
+  color: #191716;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.uploadContainer button:hover {
+  background-color: #cf9d2b;
+}
+
+.uploadContainer p {
+  margin-top: 20px;
+  color: #e6af2e;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .uploadContainer {
     padding: 20px;
-    text-align: center;
   }
-  
-  input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+
+  .uploadContainer h1 {
+    font-size: 24px;
   }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
+
+  .uploadContainer button {
+    font-size: 14px;
   }
-  
-  button:hover {
-    background-color: #218838;
-  }
-  
+}
