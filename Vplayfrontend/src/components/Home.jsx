@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import VideoCard from './VideoCard';
 import './home.css';
@@ -21,24 +21,24 @@ const Home = () => {
     }
   };
 
-  const handleUploadRedirect = () => {
-    navigate('/upload');
-  };
-
-  const handleSubscribedVideosRedirect = () => {
-    navigate('/subscribed_videos');
-  };
-
   return (
     <div className="home">
       <header className="header">
         <div className="logo">
-          <img src="/path/to/your/logo.png" alt="Website Logo" />
+          <Link to="/">
+            <img src="icon.png" alt="Website Logo" />
+          </Link>
         </div>
         <nav className="nav">
-          <button onClick={handleUploadRedirect}>Upload Video</button>
-          <button onClick={handleSubscribedVideosRedirect}>Subscribed Videos</button>
+        <Link to="/home" className="nav-link">Home</Link>
+          <Link to="/upload" className="nav-link">Upload Video</Link>
+          <Link to="/subscribed_videos" className="nav-link">Subscribed Videos</Link>
         </nav>
+        <div className="user-profile">
+          <Link to="/my-profile">
+            <img src="users.png" alt="User Profile" />
+          </Link>
+        </div>
       </header>
       <main className="main-content">
         <h1>Video Gallery</h1>

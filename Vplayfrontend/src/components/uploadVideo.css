@@ -6,8 +6,54 @@ body {
   color: #191716;
 }
 
+.uploadPage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #191716; /* Dark background */
+  color: #e0e2db; /* Light text color */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #191716; /* Dark header */
+  box-shadow: 0 1px 2px rgba(230, 175, 46, 0.1); /* Subtle shadow with accent color */
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem; /* Add spacing between navigation links */
+}
+
+.nav-link {
+  color: #e6af2e; /* Accent color for navigation links */
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #c8941e; /* Darker shade of accent color on hover */
+}
+
+.user-profile img {
+  height: 35px;
+  width: auto;
+  cursor: pointer;
+}
+
+/* Upload Container */
 .uploadContainer {
   max-width: 600px;
+  width:50%;
   margin: 0 auto;
   padding: 40px;
   background-color: #191716;
@@ -80,6 +126,19 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav {
+    margin-top: 1rem;
+  }
+
+  .nav-link {
+    margin-right: 1rem;
+  }
+
   .uploadContainer {
     padding: 20px;
   }

@@ -3,8 +3,15 @@ body, html {
   padding: 0;
   height: 100%;
   width: 100%;
-  font-family: Arial, sans-serif;
+  font-family: 'Comfortaa', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500; /* Choose a weight between 300 and 700 */
+  font-style: normal;
 }
+
+/* Define your custom class with Comfortaa font */
+
+
 
 .home {
   display: flex;
@@ -24,24 +31,30 @@ body, html {
 }
 
 .logo img {
-  height: 30px;
+  height: 40px;
   width: auto;
 }
 
-.nav button {
-  margin-left: 1rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  background-color: #e6af2e; /* Accent color for buttons */
-  color: #191716; /* Dark text on buttons */
-  cursor: pointer;
-  border-radius: 2px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
+.nav {
+  display: flex;
+  gap: 1.5rem; /* Add spacing between navigation links */
 }
 
-.nav button:hover {
-  background-color: #c8941e; /* Darker shade of accent color on hover */
+.nav-link {
+  color: #e6af2e; /* Accent color for navigation links */
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #c8941e; /* Darker shade of accent color on hover */
+}
+
+.user-profile img {
+  height: 35px;
+  width: auto;
+  cursor: pointer;
 }
 
 .main-content {
@@ -63,7 +76,6 @@ body, html {
   width: 100%;
 }
 
-/* Assuming VideoCard is a separate component, you might need to add styles for it here */
 .video-card {
   background-color: #2a2522; /* Slightly lighter than the background for contrast */
   border-radius: 8px;
@@ -85,10 +97,8 @@ body, html {
     margin-top: 1rem;
   }
 
-  .nav button {
-    margin-left: 0;
+  .nav-link {
     margin-right: 1rem;
-    margin-bottom: 0.5rem;
   }
 
   .videos-grid {

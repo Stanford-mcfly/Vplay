@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './uploadVideo.css';
 import axios from 'axios';
 
@@ -18,7 +19,7 @@ const UploadVideo = () => {
     formData.append('video', video);
 
     try {
-      const response = await axios.post('http://localhost:5000/upload', formData, {
+      await axios.post('http://localhost:5000/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -32,37 +33,59 @@ const UploadVideo = () => {
   };
 
   return (
-    <div className="uploadContainer">
-      <h1>Upload Video</h1>
-      <form onSubmit={handleUpload}>
-        <input
-          type="text"
-          placeholder="Video Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Video Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <input
-          type="file"
-          onChange={(e) => setThumbnail(e.target.files[0])}
-          accept="image/*"
-          required
-        />
-        <input
-          type="file"
-          onChange={(e) => setVideo(e.target.files[0])}
-          accept="video/*"
-          required
-        />
-        <button type="submit">Upload</button>
-      </form>
-      <p>{uploadStatus}</p>
+    <div className="uploadPage">
+      <header className="header">
+        <div className="logo">
+          <Link to="/">
+            <img src="icon.png" alt="Website Logo" />
+          </Link>
+        </div>
+        <nav className="nav">
+        <Link to="/home" className="nav-link">Home</Link>
+          <Link to="/upload" className="nav-link">Upload Video</Link>
+          <Link to="/subscribed_videos" className="nav-link">Subscribed Videos</Link>
+        </nav>
+        <div className="user-profile">
+          <Link to="/my-profile">
+            <img src="users.png" alt="User Profile" />
+          </Link>
+        </div>
+      </header>
+      
+      <div className="uploadContainer">
+        <h1>Upload Video</h1>
+        <form onSubmit={handleUpload}>
+          <input
+            type="text"
+            placeholder="Video Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+          <textarea
+            placeholder="Video Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+          <p>Select Thumbnail image</p>
+          <input
+            type="file"
+            onChange={(e) => setThumbnail(e.target.files[0])}
+            accept="image/*"
+            required
+          />
+          <p>Select Video</p>
+          <input
+            type="file"
+            onChange={(e) => setVideo(e.target.files[0])}
+            accept="video/*"
+            required
+          />
+          <button type="submit">Upload</button>
+        </form>
+        <p>{uploadStatus}</p>
+      </div>
     </div>
   );
 };

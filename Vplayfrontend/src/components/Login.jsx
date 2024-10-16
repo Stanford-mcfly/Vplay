@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './login.css';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -20,6 +20,7 @@ const Login = () => {
   };
 
   return (
+    <div className="head">
     <div className="loginContainer">
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
@@ -40,6 +41,18 @@ const Login = () => {
         <button type="submit">Login</button>
         <p>{errorMessage}</p>
       </form>
+      <Link
+        to="/"
+        style={{
+          color: '#e6af2e',
+          textDecoration: 'none',
+          marginTop: '10px',
+          display: 'inline-block'
+        }}
+      >
+        Don't have an account? Signup
+      </Link>
+    </div>
     </div>
   );
 };

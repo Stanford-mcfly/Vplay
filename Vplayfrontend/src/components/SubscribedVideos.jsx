@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './home.css';
 import VideoCard from './VideoCard';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SubscribedVideos = () => {
   const [videos, setVideos] = useState([]);
@@ -26,13 +26,34 @@ const SubscribedVideos = () => {
   };
 
   return (
-    <div className="homeContainer">
-      <h1>Subscribed Videos</h1>
-      <button onClick={handleUploadRedirect} className="uploadButton">Upload Video</button>
-      <div className="videosGrid">
-        {videos.map((video) => (
-          <VideoCard key={video.file_id} video={video} />
-        ))}
+    <div className="subscribedVideosPage">
+      <header className="header">
+        <div className="logo">
+          <Link to="/">
+            <img src="icon.png" alt="Website Logo" />
+          </Link>
+        </div>
+        <nav className="nav">
+        <Link to="/home" className="nav-link">Home</Link>
+          <Link to="/upload" className="nav-link">Upload Video</Link>
+          <Link to="/subscribed_videos" className="nav-link">Subscribed Videos</Link>
+        </nav>
+        <div className="user-profile">
+          <Link to="/my-profile">
+            <img src="users.png" alt="User Profile" />
+          </Link>
+        </div>
+      </header>
+
+      <div className="homeContainer">
+        <h1 align="center">Subscribed Videos</h1>
+        <br></br>
+        <br></br>
+        <div className="videosGrid">
+          {videos.map((video) => (
+            <VideoCard key={video.file_id} video={video} />
+          ))}
+        </div>
       </div>
     </div>
   );
