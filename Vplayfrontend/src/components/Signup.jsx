@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Signup.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import logo from '../assets/logo-color.svg';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -30,6 +31,7 @@ const Signup = () => {
   return (
     <div className="head">
     <div className="signupContainer">
+    <img src={logo} alt="Logo" className="logo" />
       <h1>Signup</h1>
       <form onSubmit={handleSignup}>
         <input

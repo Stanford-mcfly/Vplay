@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify, session
 from pymongo import MongoClient
 from bson import ObjectId
 # Initialize Flask extensions
-client = MongoClient('mongodb://localhost:6000/')
+client = MongoClient('mongodb://localhost:27017/')
 db = client['mydb']  # Replace with your database name
 users_collection = db.users
 videos_collection = db.videos

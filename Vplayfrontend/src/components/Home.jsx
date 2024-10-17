@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import VideoCard from './VideoCard';
 import './home.css';
+import logo from '../assets/logo-color.svg';
 
 const Home = () => {
   const [videos, setVideos] = useState([]);
@@ -26,7 +27,7 @@ const Home = () => {
       <header className="header">
         <div className="logo">
           <Link to="/">
-            <img src="icon.png" alt="Website Logo" />
+            <img src={logo} alt="Website Logo" />
           </Link>
         </div>
         <nav className="nav">

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './login.css';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import logo from '../assets/logo-color.svg';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,6 +23,7 @@ const Login = () => {
   return (
     <div className="head">
     <div className="loginContainer">
+    <img src={logo} alt="Logo" className="logo" /> 
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <input
