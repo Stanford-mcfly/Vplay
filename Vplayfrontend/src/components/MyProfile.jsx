@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './profile.css';
 import { useNavigate } from 'react-router-dom';
@@ -48,7 +48,7 @@ const MyProfile = () => {
       {/* Navigation Bar */}
       <header className="header">
         <div className="logo">
-          <img src="icon.png" alt="Website Logo" />
+          <img src="../assets/logo-color.svg" alt="Website Logo" />
         </div>
         <nav className="nav">
           <a href="/home">Home</a>

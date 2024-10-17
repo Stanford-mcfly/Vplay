@@ -5,7 +5,7 @@ from bson import ObjectId
 comment_bp = Blueprint('comment_bp', __name__)
 
 # MongoDB connection
-client = MongoClient('mongodb://localhost:6000/')
+client = MongoClient('mongodb://localhost:27017/')
 db = client['mydb']
 videos_collection = db['videos']
 comments_collection = db['comments']

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import './subscribe.css';
 import VideoCard from './VideoCard';
 import axios from 'axios';
@@ -30,7 +30,7 @@ const SubscribedVideos = () => {
       <header className="header">
         <div className="logo">
           <Link to="/">
-            <img src="icon.png" alt="Website Logo" />
+            <img src="../assets/logo-color.svg" alt="Website Logo" />
           </Link>
         </div>
         <nav className="nav">
