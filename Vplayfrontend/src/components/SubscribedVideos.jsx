@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './home.css';
+import './subscribe.css';
 import VideoCard from './VideoCard';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
@@ -45,11 +45,11 @@ const SubscribedVideos = () => {
         </div>
       </header>
 
-      <div className="homeContainer">
+      <div className="main-content">
         <h1 align="center">Subscribed Videos</h1>
         <br></br>
         <br></br>
-        <div className="videosGrid">
+        <div className="videos-grid">
           {videos.map((video) => (
             <VideoCard key={video.file_id} video={video} />
           ))}

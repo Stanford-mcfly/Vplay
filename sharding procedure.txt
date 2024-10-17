@@ -1,0 +1,62 @@
+ mongod --configsvr --replSet cfg --dbpath C:\data\cfg0 --port 26050 --logpath C:\data\log.cfg0 --logappend
+
+ mongod --configsvr --replSet cfg --dbpath C:\data\cfg1 --port 26051 --logpath C:\data\log.cfg1 --logappend
+
+ mongod --configsvr --replSet cfg --dbpath C:\data\cfg2 --port 26052 --logpath C:\data\log.cfg2 --logappend
+
+ mongosh --port 26050
+ rs.initiate({
+...    _id: "cfg",
+...    configsvr: true,
+...    members: [
+...       { _id: 0, host: "localhost:26050" },
+...       { _id: 1, host: "localhost:26051" },
+...       { _id: 2, host: "localhost:26052" }
+...    ]
+... })
+
+
+ mongod --shardsvr --replSet a --dbpath C:\data\a0 --port 27000 --logpath C:\data\log.a0 --logappend
+
+ mongod --shardsvr --replSet a --dbpath C:\data\a1 --port 27001 --logpath C:\data\log.a1 --logappend
+
+ mongod --shardsvr --replSet a --dbpath C:\data\a2 --port 27002 --logpath C:\data\log.a2 --logappend
+
+ mongod --shardsvr --replSet b --dbpath C:\data\b0 --port 27100 --logpath C:\data\log.b0 --logappend
+
+ mongod --shardsvr --replSet b --dbpath C:\data\b1 --port 27101 --logpath C:\data\log.b1 --logappend
+
+ mongod --shardsvr --replSet b --dbpath C:\data\b2 --port 27102 --logpath C:\data\log.b2 --logappend
+
+ mongosh --port 27000
+ rs.initiate({
+...    _id: "a",
+...    members: [
+...       { _id: 0, host: "localhost:27000" },
+...       { _id: 1, host: "localhost:27001" },
+...       { _id: 2, host: "localhost:27002" }
+...    ]
+... })
+
+ mongosh --port 27100
+ rs.initiate({
+...    _id: "b",
+...    members: [
+...       { _id: 0, host: "localhost:27100" },
+...       { _id: 1, host: "localhost:27101" },
+...       { _id: 2, host: "localhost:27102" }
+...    ]
+... })
+
+
+ mongos --configdb cfg/localhost:26050,localhost:26051,localhost:26052 --logpath C:\data\log.mongos --logappend --bind_ip localhost --port 6000
+
+
+mongosh --host localhost --port 6000
+
+sh.enableSharding("mydb");
+
+sh.shardCollection("mydb.users", { _id: "hashed" });
+
+
+db.users.getShardDistribution();

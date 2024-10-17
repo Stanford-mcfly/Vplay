@@ -3,7 +3,7 @@ from gridfs import GridFS
 from pymongo import MongoClient
 import base64
 
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb://localhost:6000/')
 db = client['mydb']
 fs = GridFS(db)
 videos_collection = db['videos']
@@ -105,3 +105,56 @@ def get_subscribed_videos():
         })
 
     return jsonify(video_list)
+@video_bp.route('/my_page', methods=['GET'])
+def my_page():
+    current_user_id = session.get('user_id')
+    if not current_user_id:
+        return 'User not logged in', 403
+
+    # Get user details
+    user = users_collection.find_one({'userId': current_user_id})
+    if not user:
+        return 'User not found', 404
+
+    # Get user's uploaded videos
+    videos = videos_collection.find({'ownerId': current_user_id})
+    video_list = []
+    
+    for video in videos:
+        video_list.append({
+            'title': video['title'],
+            'thumbnail': video['thumbnail'],
+            'file_id': str(video['_id']), 
+            'filename':video['filename'], # Include file_id for deletion
+        })
+
+    return jsonify({
+        'username': user['name'],
+        'email': user['email'],
+        'profilePicture': user['profilePicture'],
+        'videos': video_list
+    })
+
+@video_bp.route('/delete_video', methods=['DELETE'])
+def delete_video():
+    current_user_id = session.get('user_id')
+    if not current_user_id:
+        return 'User not logged in', 403
+
+    filename = request.json.get('filename')
+    print(f"Attempting to delete video with filename: {filename}")  # Get the filename from the request
+    if not filename:
+        return 'Filename is required', 400
+
+    # Find the video by filename and owner ID
+    video = videos_collection.find_one({'filename': filename, 'ownerId': current_user_id})
+    if not video:
+        return 'Video not found or does not belong to the user', 404
+
+    # Delete video from GridFS
+    fs.delete(video['file_id'])
+    
+    # Delete video document from the collection
+    videos_collection.delete_one({'_id': video['_id']})
+
+    return jsonify({'message': 'Video deleted successfully'}), 200

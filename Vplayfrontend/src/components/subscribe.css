@@ -1,0 +1,107 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Comfortaa', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500; /* Choose a weight between 300 and 700 */
+    font-style: normal;
+  }
+  
+  /* Define your custom class with Comfortaa font */
+  
+  
+  
+  .home {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #191716; /* Dark background */
+    color: #e0e2db; /* Light text color */
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #191716; /* Dark header */
+    box-shadow: 0 1px 2px rgba(230, 175, 46, 0.1); /* Subtle shadow with accent color */
+  }
+  
+  .logo img {
+    height: 40px;
+    width: auto;
+  }
+  
+  .nav {
+    display: flex;
+    gap: 1.5rem; /* Add spacing between navigation links */
+  }
+  
+  .nav-link {
+    color: #e6af2e; /* Accent color for navigation links */
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #c8941e; /* Darker shade of accent color on hover */
+  }
+  
+  .user-profile img {
+    height: 35px;
+    width: auto;
+    cursor: pointer;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: #191716; /* Dark background for main content */
+  }
+  
+  .main-content h1 {
+    font-size: 24px;
+    margin-bottom: 1rem;
+    color: #e6af2e; /* Accent color for heading */
+  }
+  
+  .videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+  }
+  
+  .video-card {
+    background-color: #2a2522; /* Slightly lighter than the background for contrast */
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .video-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .nav {
+      margin-top: 1rem;
+    }
+  
+    .nav-link {
+      margin-right: 1rem;
+    }
+  
+    .videos-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }

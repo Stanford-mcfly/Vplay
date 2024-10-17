@@ -72,8 +72,10 @@ const MyProfile = () => {
           <h2>{userData.username}</h2>
           <p>Email: {userData.email}</p>
         </div>
+
         <h2>My Videos</h2>
-        <div className="videosGrid">
+        <div className ="main-content">
+        <div className="videos-grid">
           {userData.videos.length > 0 ? (
             userData.videos.map((video) => (
               <div key={video.file_id} className="videoCard">
@@ -84,6 +86,7 @@ const MyProfile = () => {
           ) : (
             <p>No videos uploaded yet.</p>
           )}
+          </div>
         </div>
         <h2>Delete Video</h2>
         <select onChange={(e) => setSelectedVideo(e.target.value)} value={selectedVideo}>
