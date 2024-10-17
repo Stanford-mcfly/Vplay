@@ -49,7 +49,11 @@ const MyProfile = () => {
       {/* Navigation Bar */}
       <header className="header">
         <div className="logo">
+<<<<<<< HEAD
           <img src={logo} alt="Website Logo" />
+=======
+          <img src="../assets/logo-color.svg" alt="Website Logo" />
+>>>>>>> 88007e905ae2ba957c8f8554d408bdc2d0dc3d6b
         </div>
         <nav className="nav">
           <a href="/home">Home</a>
