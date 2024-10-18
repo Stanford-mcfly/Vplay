@@ -31,7 +31,7 @@ const Signup = () => {
   return (
     <div className="head">
     <div className="signupContainer">
-    <img src={logo} alt="Logo" className="logo" />
+    <img src={logo} alt="Logo" className="logo1" />
       <h1>Signup</h1>
       <form onSubmit={handleSignup}>
         <input

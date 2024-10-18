@@ -32,10 +32,10 @@ body {
   justify-content: center; /* Center the content vertically */
 }
 
-.logo {
+.logo1 {
   display: block;
   margin: 0 auto 20px; /* Center the logo and add margin */
-  width: 150px; /* Adjust the size of the logo */
+  width: 250px; /* Adjust the size of the logo */
   height: auto;
 }
 
