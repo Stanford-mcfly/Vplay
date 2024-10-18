@@ -23,7 +23,7 @@ const Login = () => {
   return (
     <div className="head">
     <div className="loginContainer">
-    <img src={logo} alt="Logo" className="logo" /> 
+    <img src={logo} alt="Logo" className="logo1" /> 
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <input

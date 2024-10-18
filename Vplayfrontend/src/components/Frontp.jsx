@@ -33,7 +33,7 @@ const Home = () => {
     <div className="home-page">
       <div id="vanta-background"></div>
       <div className="home-content">
-      <h1 className="l1">Welcome to VPlay!!</h1>
+      <h1 className="l1">Welcome to VPlay</h1>
 <p className="l2">
   Enjoy seamless video streaming with VPlay! Explore, watch, and discover your favorite content anytime, anywhere.
 </p>
