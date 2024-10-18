@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/login', { email, password }, { withCredentials: true });
-      navigate('/home');
+      navigate('/front1');
     } catch (error) {
       setErrorMessage('Invalid email or password');
     }

@@ -74,6 +74,17 @@ def get_video(filename):
     file = fs.find_one({'filename': filename})
     if not file:
         return 'File not found', 404
+    
+    current_user_id = session.get('user_id')
+    if not current_user_id:
+        return 'User not logged in', 403
+
+    # Add the filename to the user's watch history (if not already present)
+    users_collection.update_one(
+        {'userId': current_user_id},
+        {'$addToSet': {'history': filename}}  # $addToSet ensures no duplicates
+    )
+
     return send_file(file, mimetype='video/mp4')
 @video_bp.route('/subscribed_videos', methods=['GET'])
 def get_subscribed_videos():
@@ -158,3 +169,57 @@ def delete_video():
     videos_collection.delete_one({'_id': video['_id']})
 
     return jsonify({'message': 'Video deleted successfully'}), 200
+@video_bp.route('/watch_history', methods=['GET'])
+def get_watch_history():
+    current_user_id = session.get('user_id')
+    if not current_user_id:
+        return 'User not logged in', 403
+
+    # Fetch user's history
+    user = users_collection.find_one({'userId': current_user_id})
+    if not user or 'history' not in user:
+        return jsonify([])  # Return an empty list if no history
+
+    history_filenames = user['history']
+
+    # Fetch videos based on filenames stored in history
+    videos = videos_collection.find({'filename': {'$in': history_filenames}})
+    video_list = []
+
+    for video in videos:
+        owner = users_collection.find_one({'userId': video['ownerId']})
+        video_list.append({
+            'ownerId': video['ownerId'],
+            'title': video['title'],
+            'thumbnail': video['thumbnail'],
+            'filename': video['filename'],
+            'ownerName': owner['name'],
+            'ownerProfilePicture': owner['profilePicture'],
+            'file_id': str(video['_id']),  # Include file_id for VideoCard
+        })
+
+    return jsonify(video_list)
+@video_bp.route('/search', methods=['GET'])
+def search_videos():
+    query = request.args.get('query')
+    if not query:
+        return jsonify([])  # Return an empty list if no query is provided
+
+    # Find videos where the title contains the query (case-insensitive)
+    videos = videos_collection.find({'title': {'$regex': query, '$options': 'i'}})
+    video_list = []
+
+    for video in videos:
+        owner = users_collection.find_one({'userId': video['ownerId']})
+        video_list.append({
+            'ownerId': video['ownerId'],
+            'title': video['title'],
+            'thumbnail': video['thumbnail'],
+            'filename': video['filename'],
+            'ownerName': owner['name'],
+            'ownerProfilePicture': owner['profilePicture'],
+            'file_id': str(video['_id']),  # Include file_id for VideoCard
+        })
+
+    return jsonify(video_list)
+
