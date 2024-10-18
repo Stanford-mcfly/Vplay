@@ -45,6 +45,8 @@ const UploadVideo = () => {
         <Link to="/home" className="nav-link">Home</Link>
           <Link to="/upload" className="nav-link">Upload Video</Link>
           <Link to="/subscribed_videos" className="nav-link">Subscribed Videos</Link>
+          <Link to="/watch_history" className="nav-link">WatchHistory</Link>
+          <Link to="/search" className="nav-link">Search</Link>
         </nav>
         <div className="user-profile">
           <Link to="/my-profile">
