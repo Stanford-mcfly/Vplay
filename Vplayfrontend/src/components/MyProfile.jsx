@@ -55,6 +55,8 @@ const MyProfile = () => {
           <a href="/home">Home</a>
           <a href="/upload">Upload Video</a>
           <a href="/subscribed_videos">Subscribed Videos</a>
+          <a href="/watch_history">WatchHistory</a>
+          <a href="/search">Search</a>
         </nav>
         <div className="profile-icon">
           <a href="/"><img src="users.png" alt="User Profile" /></a>
