@@ -9,6 +9,7 @@ import MyProfile from './components/MyProfile';
 import WatchHistory from './components/watchHistory';// Import SubscribedVideos component
 import Search from './components/Search';
 import Front from './components/Frontp';
+import Button from './components/Button';
 function App() {
   return (
     <Router>

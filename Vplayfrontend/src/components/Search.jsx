@@ -3,6 +3,8 @@ import './subscribe.css'; // Reusing the same CSS
 import VideoCard from './VideoCard';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import Button from './Button'; // Import custom Button
+import './button.css'; 
 
 const Search = () => {
   const [query, setQuery] = useState('');
@@ -79,8 +81,9 @@ const Search = () => {
             placeholder="Search by title..."
             required
           />
-          <button type="submit">Search</button>
-          <button type="button" onClick={handleVoiceSearch}>🎤 Voice Search</button>
+          <center>
+          <Button type="submit" filled>Search</Button>
+          <Button type="button" onClick={handleVoiceSearch} filled>🎤 Voice Search</Button></center>
         </form>
         <br />
         <div className="videos-grid">
