@@ -33,7 +33,7 @@ body, html {
 .logo {
   margin: 0 auto 20px; /* Center the logo and add margin */
   width: 100%;  /* Set the width to 100% of its container */
-  max-width: 600px; /* Increase the max width of the logo */
+
   height: auto; /* Maintain aspect ratio */
 }
 

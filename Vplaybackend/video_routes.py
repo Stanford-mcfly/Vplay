@@ -3,7 +3,7 @@ from gridfs import GridFS
 from pymongo import MongoClient
 import base64
 
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb://localhost:6000/')
 db = client['mydb']
 fs = GridFS(db)
 videos_collection = db['videos']

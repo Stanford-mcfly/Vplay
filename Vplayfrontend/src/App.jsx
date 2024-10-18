@@ -21,7 +21,6 @@ function App() {
         <Route path="/watch_history" element={<WatchHistory />} />
         <Route path="/my-profile" element={<MyProfile />} />
         <Route path="/front1" element={<Front />} />
-
         <Route path="/search" element={<Search />} />
         <Route path="/subscribed_videos" element={<SubscribedVideos />} /> {/* Add SubscribedVideos route */}
       </Routes>

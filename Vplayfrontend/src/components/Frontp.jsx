@@ -33,10 +33,10 @@ const Home = () => {
     <div className="home-page">
       <div id="vanta-background"></div>
       <div className="home-content">
-        <h1>AI Assistant for Developers</h1>
-        <p>
-          Boost your productivity with our AI tool. Experience the power of AI-assisted coding and automated testing.
-        </p>
+      <h1 className="l1">Welcome to VPlay!!</h1>
+<p className="l2">
+  Enjoy seamless video streaming with VPlay! Explore, watch, and discover your favorite content anytime, anywhere.
+</p>
         <button className="home-cta-button" onClick={handleGetStarted}>
           Get started
         </button>

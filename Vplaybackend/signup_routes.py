@@ -8,7 +8,7 @@ import uuid  # Import the uuid module
 signup_bp = Blueprint('signup_bp', __name__)
 CORS(signup_bp, supports_credentials=True)
 
-client = MongoClient('mongodb://localhost:27017/')
+client = MongoClient('mongodb://localhost:6000/')
 db = client['mydb']
 users_collection = db['users']
 
