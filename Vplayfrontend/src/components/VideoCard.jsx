@@ -1,4 +1,3 @@
-import React from 'react';
 import './videoCard.css';
 import { useNavigate } from 'react-router-dom';
 import { CardContainer, CardBody, CardItem } from './Card3D'; // Import 3D card effect components

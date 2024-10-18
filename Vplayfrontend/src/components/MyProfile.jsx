@@ -51,7 +51,7 @@ const MyProfile = () => {
         <div className="logo">
           <img src={logo} alt="Website Logo" />
         </div>
-        <nav className="nav">k
+        <nav className="nav">
           <a href="/home">Home</a>
           <a href="/upload">Upload Video</a>
           <a href="/subscribed_videos">Subscribed Videos</a>
