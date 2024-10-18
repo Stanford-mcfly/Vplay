@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import './subscribe.css';
 import VideoCard from './VideoCard';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import logo from '../assets/logo-color.svg';
 
 const SubscribedVideos = () => {
   const [videos, setVideos] = useState([]);
@@ -30,7 +31,7 @@ const SubscribedVideos = () => {
       <header className="header">
         <div className="logo">
           <Link to="/">
-            <img src="icon.png" alt="Website Logo" />
+            <img src={logo} alt="Website Logo" />
           </Link>
         </div>
         <nav className="nav">

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './profile.css';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo-color.svg';
 
 axios.defaults.withCredentials = true;
 
@@ -48,9 +49,9 @@ const MyProfile = () => {
       {/* Navigation Bar */}
       <header className="header">
         <div className="logo">
-          <img src="icon.png" alt="Website Logo" />
+          <img src={logo} alt="Website Logo" />
         </div>
-        <nav className="nav">
+        <nav className="nav">k
           <a href="/home">Home</a>
           <a href="/upload">Upload Video</a>
           <a href="/subscribed_videos">Subscribed Videos</a>
